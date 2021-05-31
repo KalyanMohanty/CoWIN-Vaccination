@@ -52,21 +52,10 @@ unique_districts.sort()
 
 left_column_1, right_column_1 = st.beta_columns(2)
 with left_column_1:
-    numdays = st.slider('Select Date Range', 0, 100, 5)
+    numdays = st.slider('Select Date Range', 0, 100, 50)
 
 with right_column_1:
-    unique_districts = ['Angul',  
-                        'Boudh','Balangir','Bargarh','Balasore','Bhadrak'
-                        'Cuttack',
-                        'Dhenkanal',
-                        'Ganjam','Gajapati',
-                        'Jharsuguda','Jajpur','Jagatsinghpur',
-                        'Kendrapara','Khurda','Kendujhar','Kalahandi','Koraput','Kandhamal',
-                        'Malkangiri''Mayurbhanj',
-                        'Nabarangpur','Nuapada','Nayagarh',
-                        'Puri',
-                        'Sambalpur','Subarnapur','Sundargarh'
-                        ]
+    unique_districts = ['Khurda']
     dist_inp = st.selectbox('Select District', unique_districts)
 
 DIST_ID = mapping_dict[dist_inp]
@@ -111,20 +100,20 @@ if (final_df is not None) and (len(final_df)):
             final_df = filter_column(final_df, "Pincode", pincode_inp)
 
     with center_column_2:
-        valid_age = [18, 45]
-        age_inp = st.selectbox('Select Minimum Age', [""] + valid_age)
+        valid_age = [18]
+        age_inp = st.selectbox('Select Minimum Age', valid_age)
         if age_inp != "":
             final_df = filter_column(final_df, "Minimum Age Limit", age_inp)
 
     with right_column_2:
-        valid_payments = ["Free", "Paid"]
-        pay_inp = st.selectbox('Select Free or Paid', [""] + valid_payments)
+        valid_payments = ["Free"]
+        pay_inp = st.selectbox('Select Free or Paid', valid_payments)
         if pay_inp != "":
             final_df = filter_column(final_df, "Fees", pay_inp)
 
     with right_column_2a:
         valid_capacity = ["Available"]
-        cap_inp = st.selectbox('Select Availablilty', [""] + valid_capacity)
+        cap_inp = st.selectbox('Select Availablilty', valid_capacity)
         if cap_inp != "":
             final_df = filter_capacity(final_df, "Available Capacity", 0)
 
